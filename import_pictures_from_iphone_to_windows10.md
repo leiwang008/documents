@@ -8,5 +8,5 @@
  
 
 #Reference
- + [Apple: Import to your Windows PC](https://support.apple.com/en-us/HT201302)
+ + [Apple: Import to your Windows PC](https://support.apple.com/en-us/HT201302#importpc)
  + [Windows: Import photos and videos from phone to PC](https://support.microsoft.com/en-us/windows/import-photos-and-videos-from-phone-to-pc-198f2301-e9a7-c734-5f39-a8946a5ebc99)
