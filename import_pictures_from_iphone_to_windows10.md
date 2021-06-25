@@ -3,7 +3,7 @@
  2. Connect your iPhone, iPad, or iPod touch to your PC with a USB cable.  
  3. If asked, unlock your iOS or iPadOS device using your passcode.  
  4. If you see a prompt on your iOS or iPadOS device asking you to Trust This Computer, tap Trust or Allow to continue.  
- 5. On your PC, select the Start <kbd>![Windows Key][oldwinlogo]</kbd> button and then select Photos to open the Photos app.  
+ 5. On your PC, select the <kbd>Start</kbd> button and then select Photos to open the Photos app.  
  6. Select Import > From a USB device, then follow the instructions. You can pick the items you want to import and select where to save them. Allow a few moments for detection and transfer.  
  
 
