@@ -17,6 +17,7 @@
  + [Go Documents: it has every infomation about go](https://golang.org/doc/)
  + [Learn by Examples](https://gobyexample.com/)
  + [Common Mistakes](http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang/)
+ + [Config Environments in Go](https://towardsdatascience.com/use-environment-variable-in-your-next-golang-project-39e17c3aaa66)
 
  ## mage
  + [Github mage site](https://github.com/magefile/mage)
