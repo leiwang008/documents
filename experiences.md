@@ -4,10 +4,10 @@
 
 # Git
 
-+ git rebase
-  `git rebase --hard origin/main`  
-  `git rebase --hard 9fceb02`  
-  `git rebase --soft origin/main`  
++ git reset
+  `git reset --hard origin/main`  
+  `git reset --hard 9fceb02`  
+  `git reset --soft origin/main`  
 
 + git diff  
   `git diff` show the difference between files in the working tree and the those in the repository  
