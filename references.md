@@ -25,3 +25,12 @@
 
  ## mage
  + [Github mage site](https://github.com/magefile/mage)
+
+ ## python
+ + [Offical Site](https://www.python.org/)
+ + [Documents](https://docs.python.org/3/)
+ + [Get Started](https://www.python.org/about/gettingstarted/)
+ + [Tutorial](https://docs.python.org/3/tutorial/)
+ + [Geginners Guide](https://wiki.python.org/moin/BeginnersGuide/Programmers)
+ + [Reference](https://docs.python.org/3/reference/)
+ + [Recipes](https://code.activestate.com/recipes/langs/python/)
