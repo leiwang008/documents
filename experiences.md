@@ -27,3 +27,9 @@
   `git tag -d <tagname>` Delete tag '\<tagname\>'  in the local repository  
   `git push origin --delete <tagname>` Delete tag '\<tagname\>'  in the remote repository  
   
+# Python
++ where python is installed?
+  In your Python interpreter, type the following commands:  
+  **\>>>** `import os`
+  **\>>>** `import sys`
+  **\>>>** `os.path.dirname(sys.executable)`
