@@ -54,3 +54,6 @@
 + [How to install modules?](https://docs.python.org/3/installing/index.html#installing-index)
 
 
+# Jenkins
++ [Jenkins pipeline Syntax](https://www.jenkins.io/doc/book/pipeline/syntax/)
++ [Jenkins pipeline](https://www.jenkins.io/doc/book/pipeline/)
