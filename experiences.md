@@ -57,3 +57,8 @@
 # Jenkins
 + [Jenkins pipeline Syntax](https://www.jenkins.io/doc/book/pipeline/syntax/)
 + [Jenkins pipeline](https://www.jenkins.io/doc/book/pipeline/)
+
+# Bash
++ [What are $0 $# $@ $* $? ](https://segmentfault.com/a/1190000021435389)
++ [Condition test in Shell ](https://www.cnblogs.com/guanyf/p/7553940.html)
++ [Bash shell manual](https://www.gnu.org/software/bash/manual/bash.html)
