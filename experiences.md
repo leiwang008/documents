@@ -26,7 +26,14 @@
 
   `git tag -d <tagname>` Delete tag '\<tagname\>'  in the local repository  
   `git push origin --delete <tagname>` Delete tag '\<tagname\>'  in the remote repository  
-  
+
+ + git resolve conflict 
+  `git rebase master` to rebase with code in the master branch  
+  Then modify the conflicted file, for example a file named "foo"  
+  `git add foo` to add the modified file "foo"  
+  `git rebase --continue` to finish the rebase  
+  Finally the conflicts have been resolved and we can push our commit.
+
 # Python
 + where python is installed?
   In your Python interpreter, type the following commands:  
