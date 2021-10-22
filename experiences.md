@@ -27,12 +27,22 @@
   `git tag -d <tagname>` Delete tag '\<tagname\>'  in the local repository  
   `git push origin --delete <tagname>` Delete tag '\<tagname\>'  in the remote repository  
 
- + git rebase to resolve conflict  
+ + [git rebase to resolve conflict](https://www.youtube.com/watch?v=2n0_UsMf7Pg)  
   `git rebase master` to rebase with code in the master branch  
   Then modify the conflicted file, for example a file named "foo"  
   `git add foo` to add the modified file "foo"  
   `git rebase --continue` to finish the rebase  
+  Finally the conflicts have been resolved and we can push our commit.  
+  `git push origin`  
+
++ [resolve confict video](https://www.youtube.com/watch?v=__cR7uPBOIk)  
+  `git fetch origin` get the remote code without automatic merge  
+  `git merge origin/master` merge local commit with the remote commit  
+  Then modify the conflicted file, for example a file named "foo"  
+  `git add foo` to add the modified file "foo"  
+  `git commit - "fixed merge conflicts"`
   Finally the conflicts have been resolved and we can push our commit.
+  `git push origin`  
 
 # Python
 + where python is installed?
