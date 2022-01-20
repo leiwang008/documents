@@ -44,6 +44,15 @@
   Finally the conflicts have been resolved and we can push our commit.
   `git push origin`  
 
++ How to check if a script like foo.sh is executable and how to make it executable in Git
+  `git ls-files --stage`  
+  100644 6643f02815ab62179560af03520b32117a6f6e00 0       foo.sh  
+  The attribute '100644' means the file is not executable, '100755' represents executable  
+
+  `git update-index --chmod=+x foo.sh` will change that attribute to '100755'  
+  `git ls-files --stage`  
+  100755 6643f02815ab62179560af03520b32117a6f6e00 0       foo.sh  
+
 # Python
 + where python is installed?
   In your Python interpreter, type the following commands:  
