@@ -29,3 +29,28 @@ we will get the token as below
 ```
 
 Finally we can verify the generated oauthbearer token in [https://jwt.io/](https://jwt.io/) to see the decoded token, we can see the field 'typ', 'alg', 'kid' for the header, 'aud', 'iss', 'sub' etc. for the payload, and we will see if the token's signature is verified or not.
+
+
+# How to verify kafka works with azure OIDC token in OAUTHBEARER mode?
+
+Kafka has provided a tool [OAuthCompatibilityTool](https://github.com/a0x8o/kafka/blob/master/tools/src/main/java/org/apache/kafka/tools/OAuthCompatibilityTool.java) to verify that the kafka works correctly with azure OIDC token in OAUTHBEARER mode.
+
+```bash
+./bin/kafka-run-class.sh org.apache.kafka.tools.OAuthCompatibilityTool \
+  --clientId 454657fdef2-45r7-45r4-843e-3484038403324 \
+  --clientSecret 8934839jfoierno390sfdjlj$2039043!flj430990 \
+  --scope api://454657fdef2-45r7-45r4-843e-3484038403324/.default \
+  --sasl.oauthbearer.expected.audience api://454657fdef2-45r7-45r4-843e-3484038403324 \
+  --sasl.oauthbearer.token.endpoint.url https://login.microsoftonline.com/4568erfs3-583d-98f4-598e-34567233250dr43/oauth2/v2.0/token \
+  --sasl.oauthbearer.jwks.endpoint.url https://login.microsoftonline.com/4568erfs3-583d-98f4-598e-34567233250dr43/discovery/v2.0/keys
+```
+
+If succeeds, you will get 
+```bash
+PASSED 1/5: client configuration
+PASSED 2/5: client JWT retrieval
+PASSED 3/5: client JWT validation
+PASSED 4/5: broker configuration
+PASSED 5/5: broker JWT validation
+SUCCESS 
+```

@@ -62,3 +62,5 @@
   `git ls-files --stage`  
   100755 6643f02815ab62179560af03520b32117a6f6e00 0       foo.sh  
   
+# How to move file to unstaged?
+`git restore --staged kafka/image.png` will move file **kafka/image.png** from staged area to unstaged area.
