@@ -1,5 +1,7 @@
 # How to run kafka in SASL_PLAINTEXT+OAUTHBEARER mode with OIDC secure token?
 ​
+Now kafka supports **Extend SASL/OAUTHBEARER with Support for OIDC** which has been documented in [KIP-768](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=186877575) and has been implemented in the jira ticket [KAFKA-13202](https://issues.apache.org/jira/browse/KAFKA-13202) , the implementation of KIP-768 provides a concrete implementation of the interfaces defined in [KIP-255](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=75968876) to allow Kafka to connect to an Open ID identity provider for authentication and token retrieval and it can be used in **production cases**.
+
 Before configuring the broker, we need the [azure OIDC secure token](https://github.com/leiwang008/documents/blob/main/kafka/how_to_generate_azure_oidc_token.md)  
 Suppose that we have registered the azure application and we have  
 
@@ -10,7 +12,7 @@ Suppose that we have registered the azure application and we have
  
 1. config the server.properties to run with SASL_PLAINTEXT+OAUTHBEARER mode with azure OIDC  
 
-```txt
+```bash
 listeners=SASL_PLAINTEXT://safsdev03.na.sas.com:9093
 advertised.listeners=SASL_PLAINTEXT://safsdev03.na.sas.com:9093
 security.inter.broker.protocol=SASL_PLAINTEXT
@@ -48,7 +50,7 @@ listener.name.sasl_plaintext.oauthbearer.sasl.jaas.config=org.apache.kafka.commo
 ​
 2. start the zookeeper and kafka server  
 
-```txt
+```bash
 zookeeper-server-start.bat .\config\zookeeper.properties
 kafka-server-start.bat .\config\server.properties
 ```
@@ -56,7 +58,7 @@ kafka-server-start.bat .\config\server.properties
 ​
 3. next create a file client.properties in the config folder for kafka-topic script to use  
 
-```txt
+```bash
 # secure token configuration
 security.protocol=SASL_PLAINTEXT
 sasl.mechanism=OAUTHBEARER
@@ -79,14 +81,14 @@ sasl.jaas.config=org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginMo
 
 4. create topic 'gaming-events' by kafka-topic script  
 
-```txt
+```bash
 kafka-topics.bat --create --topic gaming-events --bootstrap-server localhost:9093 --command-config .\config\client.properties
 kafka-topics.bat --list --bootstrap-server localhost:9093 --command-config .\config\client.properties
 ```
 
 5. next modify consumer.properties/producer.properties the same as client.properties  
 
-```txt
+```bash
 # secure token configuration
 security.protocol=SASL_PLAINTEXT
 sasl.mechanism=OAUTHBEARER
@@ -111,7 +113,7 @@ sasl.jaas.config=org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginMo
 
 6. finally start the consumer and producer communicating through the topic 'gaming-events'  
 
-```txt
+```bash
 kafka-console-consumer.bat --topic gaming-events --from-beginning --bootstrap-server localhost:9093 --consumer.config .\config\consumer.properties
 kafka-console-producer.bat --topic gaming-events --bootstrap-server localhost:9093 --producer.config .\config\producer.properties
 ```
