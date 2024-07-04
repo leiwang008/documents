@@ -1,6 +1,6 @@
 # How to run kafka in SASL_PLAINTEXT+OAUTHBEARER mode with OIDC secure token?
 ​
-Before configuring the broker, we need the [azure OIDC secure token](https://github.com/leiwang008/documents/blob/main/how_to_generate_azure_oidc_token.md)  
+Before configuring the broker, we need the [azure OIDC secure token](https://github.com/leiwang008/documents/blob/main/kafka/how_to_generate_azure_oidc_token.md)  
 Suppose that we have registered the azure application and we have  
 
 **Directory (tenant) ID** as **4568erfs3-583d-98f4-598e-34567233250dr43**, this will be used in the 'sasl.oauthbearer.token.endpoint.url' and 'sasl.oauthbearer.jwks.endpoint.url' and 'sasl.oauthbearer.expected.issuer'  
