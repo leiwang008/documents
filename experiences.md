@@ -88,14 +88,14 @@
     Host github.com
         HostName ssh.github.com
         User git
-    	  Port 443
+        Port 443
         AddKeysToAgent yes
     	
-    	  # for user1
+        # for user1
         # IdentityFile ~/.ssh/id_user1
     	
-    	  # for user2
-    	  IdentityFile ~/.ssh/id_user2
+        # for user2
+        IdentityFile ~/.ssh/id_user2
   ```
   To verify, run the following command
   ```
