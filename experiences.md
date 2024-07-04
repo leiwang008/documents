@@ -53,7 +53,7 @@
   `git ls-files --stage`  
   100755 6643f02815ab62179560af03520b32117a6f6e00 0       foo.sh  
 
-+ How to switch the user if I have 2 github accounts?
++ How to switch the user if I have 2 github accounts?  
   First create a file named '.bash_profile' in your home folder so that the ssh private key will be loaded when you open a git bash.
   ```
     #!/bin/bash
