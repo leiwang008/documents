@@ -1,6 +1,6 @@
 # How to run kafka in SASL_SSL Mode?
 
-**The authentication is different** between **SASL_SSL** mode and **SSL**  mode, the **SASL_SSL** will use its own way to authenticate like  **user/password**, **oauthbearer** etc. while the **SSL** mode will use the **keystore** (holding the client's **private key**, client's **certificate signed by CA**) to authenticate. For SSL mode please refer to [How to run kafka in SSL Mode](ttps://github.com/leiwang008/documents/blob/main/kafka/how_to_run_kafka_in_ssl_mode.md)
+**The authentication is different** between **SASL_SSL** mode and **SSL**  mode, the **SASL_SSL** will use its own way to authenticate like  **user/password**, **oauthbearer** etc. while the **SSL** mode will use the **keystore** (holding the client's **private key**, client's **certificate signed by CA**) to authenticate. For SSL mode please refer to [How to run kafka in SSL Mode](https://github.com/leiwang008/documents/blob/main/kafka/how_to_run_kafka_in_ssl_mode.md)
 
 1. Generate the '**keystore**' and '**truststore**' on your kafka broker
 - Copy the following script into a file like '**setup_ssl_broker.sh**'

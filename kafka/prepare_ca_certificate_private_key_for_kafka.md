@@ -11,7 +11,7 @@ Below are steps to generate the client's certificate and client's private key. W
 
 ​
 
-1. Then Let's copy the following content to a file '**openssl_ca.cnf**', it is the config file for **openssl** command
+2. Then Let's copy the following content to a file '**openssl_ca.cnf**', it is the config file for **openssl** command
 
 ```bash
 HOME            = .
@@ -100,7 +100,7 @@ keyUsage               = digitalSignature, keyEncipherment
 
 ​
 
-2. Copy the following content into a file '**generate_client_key_certificate.sh**'
+3. Copy the following content into a file '**generate_client_key_certificate.sh**'
 
 ```bash
 #!/bin/bash
@@ -132,7 +132,7 @@ echo "===========================   verify the certificate in pem format  ======
 openssl x509 -in $CLIENT_SIGNED_CERTIFICATE -text -noout -passin pass:"$PASSWORD"
 ```
 
-3. Finally you can run the script to generate the client **certificate** and **private key**
+4. Finally you can run the script to generate the client **certificate** and **private key**
 
 ```bash
 $ ./generate_client_key_certificate.sh
