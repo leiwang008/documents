@@ -19,16 +19,18 @@ security.inter.broker.protocol=SASL_PLAINTEXT
 sasl.mechanism.inter.broker.protocol=OAUTHBEARER
 sasl.enabled.mechanisms=OAUTHBEARER
 
-# SASL OAuthBearer secure token settings
-listener.name.sasl_plaintext.oauthbearer.sasl.login.callback.handler.class=org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginCallbackHandler
-# listener.name.sasl_plaintext.oauthbearer.sasl.oauthbearer.token.endpoint.url=https://login.microsoftonline.com/<Directory (tenant) ID>/oauth2/v2.0/token
-listener.name.sasl_plaintext.oauthbearer.sasl.oauthbearer.token.endpoint.url=https://login.microsoftonline.com/4568erfs3-583d-98f4-598e-34567233250dr43/oauth2/v2.0/token
-
+# SASL OAuthBearer secure token (OIDC) settings
+# kafka broker configuration always need 'OAuthBearerValidatorCallbackHandler', 'jwks.endpoint.url' and 'expected.audience' to validate the oauthbearer token.
 listener.name.sasl_plaintext.oauthbearer.sasl.server.callback.handler.class=org.apache.kafka.common.security.oauthbearer.OAuthBearerValidatorCallbackHandler
 # listener.name.sasl_plaintext.oauthbearer.sasl.oauthbearer.jwks.endpoint.url=https://login.microsoftonline.com/<Directory (tenant) ID>/discovery/v2.0/keys
 listener.name.sasl_plaintext.oauthbearer.sasl.oauthbearer.jwks.endpoint.url=https://login.microsoftonline.com/4568erfs3-583d-98f4-598e-34567233250dr43/discovery/v2.0/keys
 # listener.name.sasl_plaintext.oauthbearer.sasl.oauthbearer.expected.audience=<Application ID URI>
 listener.name.sasl_plaintext.oauthbearer.sasl.oauthbearer.expected.audience=api://454657fdef2-45r7-45r4-843e-3484038403324
+
+# if 'sasl.mechanism.inter.broker.protocol' is set to 'OAUTHBEARER', then broker configuration will also need OAuthBearerLoginCallbackHandler and 'token.endpoint.url' to obtain oauthbearer token.
+listener.name.sasl_plaintext.oauthbearer.sasl.login.callback.handler.class=org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginCallbackHandler
+# listener.name.sasl_plaintext.oauthbearer.sasl.oauthbearer.token.endpoint.url=https://login.microsoftonline.com/<Directory (tenant) ID>/oauth2/v2.0/token
+listener.name.sasl_plaintext.oauthbearer.sasl.oauthbearer.token.endpoint.url=https://login.microsoftonline.com/4568erfs3-583d-98f4-598e-34567233250dr43/oauth2/v2.0/token
 
 #listener.name.sasl_plaintext.oauthbearer.sasl.oauthbearer.expected.issuer=https://sts.windows.net/<Directory (tenant) ID>/
 #listener.name.sasl_plaintext.oauthbearer.sasl.oauthbearer.expected.issuer=https://sts.windows.net/4568erfs3-583d-98f4-598e-34567233250dr43/
@@ -36,11 +38,11 @@ listener.name.sasl_plaintext.oauthbearer.sasl.oauthbearer.expected.audience=api:
 # Clock skew allowance
 #listener.name.sasl_plaintext.oauthbearer.sasl.oauthbearer.clock.skew.seconds=300
 
+# OAuthBearerLoginCallbackHandler will need 'clientId' and 'clientSecret' to exchange the token from 'token.endpoint.url'
 #listener.name.sasl_plaintext.oauthbearer.sasl.jaas.config=org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginModule required \
 #      clientId="<Application (client) ID>" \
 #      clientSecret="<Client Secret>" \
 #      scope="<Application ID URI>/.default";
-
 listener.name.sasl_plaintext.oauthbearer.sasl.jaas.config=org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginModule required \
       clientId="454657fdef2-45r7-45r4-843e-3484038403324" \
       clientSecret="8934839jfoierno390sfdjlj$2039043!flj430990" \
@@ -67,12 +69,11 @@ sasl.login.callback.handler.class=org.apache.kafka.common.security.oauthbearer.O
 # sasl.oauthbearer.token.endpoint.url=https://login.microsoftonline.com/<Directory (tenant) ID>/oauth2/v2.0/token
 sasl.oauthbearer.token.endpoint.url=https://login.microsoftonline.com/4568erfs3-583d-98f4-598e-34567233250dr43/oauth2/v2.0/token
 
-
+# OAuthBearerLoginCallbackHandler will need 'clientId' and 'clientSecret' to exchange the token from 'token.endpoint.url'
 #sasl.jaas.config=org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginModule required \
 #      clientId="<Application (client) ID>" \
 #      clientSecret="<Client Secret>" \
 #      scope="<Application ID URI>/.default";
-
 sasl.jaas.config=org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginModule required \
       clientId="454657fdef2-45r7-45r4-843e-3484038403324" \
       clientSecret="8934839jfoierno390sfdjlj$2039043!flj430990" \
@@ -97,12 +98,11 @@ sasl.login.callback.handler.class=org.apache.kafka.common.security.oauthbearer.O
 # sasl.oauthbearer.token.endpoint.url=https://login.microsoftonline.com/<Directory (tenant) ID>/oauth2/v2.0/token
 sasl.oauthbearer.token.endpoint.url=https://login.microsoftonline.com/4568erfs3-583d-98f4-598e-34567233250dr43/oauth2/v2.0/token
 
-
+# OAuthBearerLoginCallbackHandler will need 'clientId' and 'clientSecret' to exchange the token from 'token.endpoint.url'
 #sasl.jaas.config=org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginModule required \
 #      clientId="<Application (client) ID>" \
 #      clientSecret="<Client Secret>" \
 #      scope="<Application ID URI>/.default";
-
 sasl.jaas.config=org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginModule required \
       clientId="454657fdef2-45r7-45r4-843e-3484038403324" \
       clientSecret="8934839jfoierno390sfdjlj$2039043!flj430990" \
