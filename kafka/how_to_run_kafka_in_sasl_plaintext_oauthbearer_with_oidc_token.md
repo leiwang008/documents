@@ -122,8 +122,8 @@ kafka-console-producer.bat --topic gaming-events --bootstrap-server localhost:90
 This is a secure OAUTHBEARER token (azure OIDC) setting for kafka broker and consumer/producer.
 
 # Reference
-https://docs.confluent.io/platform/current/kafka/authentication_sasl/authentication_sasl_oauth.html this article is out of date
-https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc
-https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols
-[KIP-768](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=186877575) is the most useful article, supports the OAUTHBEARER/OIDC
-[KIP-255](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=75968876) supports the unsecure token, default implementation of kafka
+https://docs.confluent.io/platform/current/kafka/authentication_sasl/authentication_sasl_oauth.html this article is out of date  
+https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc  
+https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols  
+[KIP-768](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=186877575) is the most useful article, supports the OAUTHBEARER/OIDC  
+[KIP-255](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=75968876) supports the unsecure token, default implementation of kafka  
