@@ -7,17 +7,20 @@
 Below is how kafka works with OAUTHBEARER/OIDC  
 ![OAuth Bearer Token OIDC](https://github.com/leiwang008/documents/blob/main/kafka/img/oauthbearer_oidc_flow.png)  
 
+**Kafka Client** will use [org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginCallbackHandler](https://github.com/a0x8o/kafka/blob/master/clients/src/main/java/org/apache/kafka/common/security/oauthbearer/OAuthBearerLoginCallbackHandler.java) to handle the token acquisition.  
+**Kafka Server** will use [org.apache.kafka.common.security.oauthbearer.OAuthBearerValidatorCallbackHandler](https://github.com/a0x8o/kafka/blob/master/clients/src/main/java/org/apache/kafka/common/security/oauthbearer/OAuthBearerValidatorCallbackHandler.java) to handle the token validation. If we enable the "OAUTHBEARER" mechanism between the brokers, the server also need [org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginCallbackHandler](https://github.com/a0x8o/kafka/blob/master/clients/src/main/java/org/apache/kafka/common/security/oauthbearer/OAuthBearerLoginCallbackHandler.java) to handle the token acquisition.
+
 The whole flow of getting oauthbearer token is as below, kafka only use the part of it shown as the green rectangle  
 ![getting oauthbearer token](https://github.com/leiwang008/documents/blob/main/kafka/img/oauthbearer_token_acquisition_flow.png)  
 
 # How to config kafka to run with SASL/OAUTHBEARER OIDC?
-Client Configuration
+**Client Configuration**  
 The name of the implementation class will be [org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginCallbackHandler](https://github.com/a0x8o/kafka/blob/master/clients/src/main/java/org/apache/kafka/common/security/oauthbearer/OAuthBearerLoginCallbackHandler.java) and it will accept instances of org.apache.kafka.common.security.oauthbearer.OAuthBearerTokenCallback and org.apache.kafka.common.security.auth.SaslExtensionsCallback. The fully-qualified class name will be provided to the client's **sasl.login.callback.handler.class** configuration.
 
-Broker Configuration
+**Broker Configuration**  
 The name of the implementation class will be [org.apache.kafka.common.security.oauthbearer.OAuthBearerValidatorCallbackHandler](https://github.com/a0x8o/kafka/blob/master/clients/src/main/java/org/apache/kafka/common/security/oauthbearer/OAuthBearerValidatorCallbackHandler.java) and it will accept instances of org.apache.kafka.common.security.oauthbearer.OAuthBearerValidatorCallback and org.apache.kafka.common.security.oauthbearer.OAuthBearerExtensionsValidatorCallback. The fully-qualified class name will be provided to the broker's **listener.name.<listener name>.oauthbearer.sasl.server.callback.handler.class** configuration.
 
-- Many kafka's documents are out of date, you should read the source code comments ([org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginCallbackHandler](https://github.com/a0x8o/kafka/blob/master/clients/src/main/java/org/apache/kafka/common/security/oauthbearer/OAuthBearerLoginCallbackHandler.java) and [org.apache.kafka.common.security.oauthbearer.OAuthBearerValidatorCallbackHandler](https://github.com/a0x8o/kafka/blob/master/clients/src/main/java/org/apache/kafka/common/security/oauthbearer/OAuthBearerValidatorCallbackHandler.java)) to know the precise parameter to use in the config file.
+- Many kafka's documents are out of date, you should read the source code comments ([org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginCallbackHandler](https://github.com/a0x8o/kafka/blob/master/clients/src/main/java/org/apache/kafka/common/security/oauthbearer/OAuthBearerLoginCallbackHandler.java) and [org.apache.kafka.common.security.oauthbearer.OAuthBearerValidatorCallbackHandler](https://github.com/a0x8o/kafka/blob/master/clients/src/main/java/org/apache/kafka/common/security/oauthbearer/OAuthBearerValidatorCallbackHandler.java)) to know the precise parameters to use in the config file.
 
 - Many sasl config properties are defined in [org.apache.kafka.common.config.SaslConfigs](https://github.com/a0x8o/kafka/blob/master/clients/src/main/java/org/apache/kafka/common/config/SaslConfigs.java), refer to it to know the correct property to use in config file.
 
