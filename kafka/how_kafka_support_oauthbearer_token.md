@@ -4,8 +4,9 @@
 
 2. Now kafka supports **Extend SASL/OAUTHBEARER with Support for OIDC** which has been documented in [KIP-768](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=186877575) and has been implemented in the jira ticket [KAFKA-13202](https://issues.apache.org/jira/browse/KAFKA-13202) , the implementation of KIP-768 provides a concrete implementation of the interfaces defined in [KIP-255](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=75968876) to allow Kafka to connect to an Open ID identity provider for authentication and token retrieval and it can be used in **production cases**. [Run kafka in SASL_PLAINTEXT+OAUTHBEARER mode with OIDC secure token](https://github.com/leiwang008/documents/blob/main/kafka/how_to_run_kafka_in_sasl_plaintext_oauthbearer_with_oidc_token.md)  
 Below is how kafka works with OAUTHBEARER/OIDC
-![OAuth Bearer Token OIDC](img/oauthbearer_oidc_flow.png)
-
+![OAuth Bearer Token OIDC](https://github.com/leiwang008/documents/blob/main/kafka/img/oauthbearer_oidc_flow.png)
+The whole flow of getting oauthbearer token is as below, kafka only use the part of it shown as the green rectangle  
+![getting oauthbearer token](https://github.com/leiwang008/documents/blob/main/kafka/img/oauthbearer_token_acquisition_flow.png)
 
 # How to config kafka to run with SASL/OAUTHBEARER OIDC?
 Client Configuration
