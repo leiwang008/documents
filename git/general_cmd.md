@@ -21,7 +21,6 @@
   `git diff --cached --name-only` show the files in the stage area  
 
 
-
 # How to make tag?
 + git tag  
   `git tag -a v1.0.0 -m "message for this tag"` make a tag with message in local repository  
@@ -64,3 +63,29 @@
   
 # How to move file to unstaged?
 `git restore --staged kafka/image.png` will move file **kafka/image.png** from staged area to unstaged area.
+
+# How to load your ssh private key to 'ssh agent' when you open the git bash?  
+After [adding your ssh public key to github](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account), you still need to load your private key into the 'ssh agent' in your local machine so that the ssh connection will be established successfully.   
+Create a file named '.bash_profile' in your home folder so that the ssh private key will be loaded when you open a git bash.
+  ```bash
+    #!/bin/bash
+  
+    if ps --process $SSH_AGENT_PID > /dev/null
+    then
+    	echo "ssh-agent is already running"
+    	# Do something knowing the pid exists, i.e. the process with $PID is running
+    else
+    	echo "starting ssh agent ..."
+    	eval `ssh-agent -s`
+    fi
+    
+    if ps --process $SSH_AGENT_PID > /dev/null
+    then
+    	echo "ssh agent process SSH_AGENT_PID=$SSH_AGENT_PID is running ... "
+    	echo "add ssh keys to the agent ... "
+    	ssh-add ~/.ssh/id_user1
+    	ssh-add ~/.ssh/id_user2
+    else
+    	echo "no ssh agent, problem ..."
+    fi
+  ```
