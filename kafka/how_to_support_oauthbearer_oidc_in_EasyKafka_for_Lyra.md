@@ -28,8 +28,8 @@ the main c-project **librdkafka, librdkafkacpp** got built successfully and that
 5. By default, the build will be "**Dynamic Library (.dll)**", we probably need a **"Static Library" (everything in one big .lib file)**, right-click the "**librdkafak**" and select "**Properties**", and go to "**General -> Configuration Type**" and change it to "**Static library (.lib)**".  
 ![Generate Static Libraries](img/generated_library_type.png?qc_blockWidth=393&qc_blockHeight=595)  
 6. Then right-click the project "**librdkafka**" and select "**ReBuild**", and we will get the release build "**librdkafka.lib**" in folder like "win32\outdir\v143\x64\Release", copy this "librdkafka.lib" to "UE-EasyKafka\Source\ThirdParty\KafkaLib\lib\Win64" and modify "**KafkaLib.Build.cs**" to use this library instead of the old one.
-7. Then we do the same thing for project '**librdkafkacpp**' to build and get static library **librdkafkacpp.lib**, and replace the one in EasyKafka plugin.
-8. When I build the SASConnector plugin code, I got the following errors  
+7. Then we do the same thing for project '**librdkafkacpp**' to build and get static library **librdkafkacpp.lib**, and replace the old one in EasyKafka plugin.
+8. When I build our plugin code, I got the following errors  
 `Severity Code Description Project File Line Suppression State Details Error LNK2001 unresolved external symbol __imp_crc32 LyraStarterGame C:\repository\lyra-demo-kafka\LyraStarterGame\Intermediate\ProjectFiles\librdkafka.lib(rdkafka_admin.obj) 1`  
 So I checked the "librdkafka" solution, I found that it depends some installed libraries which have been put in C:\sdk\librdkafka-2.4.0\vcpkg_installed\x64-windows\x64-windows\lib (libcurl.lib, libcrypto.lib, libssl.lib, zlib.lib,zstd.lib etc., **these are dynamic libraries by default, cannot be used directly**) and copied them to the "UE-EasyKafka\Source\ThirdParty\KafkaLib\lib\Win64" and modified the KafkaLib.Build.cs to include them  
 9. After all these modifications, I successfully built the whole project
@@ -38,19 +38,20 @@ So I checked the "librdkafka" solution, I found that it depends some installed l
 11. I noticed that there are some .dll files (libcrypto-3-x64.dll, libssl-3-x64.dll, zlib1.dll, libcurl.dll, zstd.dll, the **.dll file of the dynamic library**) in the folder C:\repository\github\librdkafka\vcpkg_installed\x64-windows\x64-windows\bin, I copied them to the folder "UE-EasyKafka\Source\ThirdParty\KafkaLib\bin\Win64" and then include them as below
 	```
 		string binPath = Path.Combine(ModuleDirectory, "bin/Win64");
-        RuntimeDependencies.Add(Path.Combine(binPath, "libcrypto-3-x64.dll"));
-    	RuntimeDependencies.Add(Path.Combine(binPath, "libssl-3-x64.dll"));
-        RuntimeDependencies.Add(Path.Combine(binPath, "zlib1.dll"));
-        RuntimeDependencies.Add(Path.Combine(binPath, "libcurl.dll"));
-        RuntimeDependencies.Add(Path.Combine(binPath, "zstd.dll"));
+		RuntimeDependencies.Add(Path.Combine(binPath, "libcrypto-3-x64.dll"));
+		RuntimeDependencies.Add(Path.Combine(binPath, "libssl-3-x64.dll"));
+		RuntimeDependencies.Add(Path.Combine(binPath, "zlib1.dll"));
+		RuntimeDependencies.Add(Path.Combine(binPath, "libcurl.dll"));
+		RuntimeDependencies.Add(Path.Combine(binPath, "zstd.dll"));
 	```  
-12. But I still cannot get the EasyKafka loaded. So I tried to use the static libraries (big .lib file) as dependencies, not the dynamic dependencies (small .lib + .dll file). We can run the following command to get the static libraries, pay attention to **--triplet "x64-windows-static"**, normally it is **--triplet "x64-windows"** (this will get the dependencies as dynamic libraries small .lib + .dll file)  
+12. But I still cannot get the EasyKafka plugin loaded. So I tried to use the static libraries (big .lib file) as dependencies, not the dynamic dependencies (small .lib + .dll file). We can run the following command to get the static dependencies libraries, pay attention to **--triplet "x64-windows-static"**, normally it is **--triplet "x64-windows"** (this will get the dependencies as dynamic libraries small .lib + .dll file)  
 	```
 	vcpkg install  --x-wait-for-lock --triplet "x64-windows-static" --vcpkg-root "C:\repository\github\vcpkg\\" "--x-manifest-root=C:\sdk\librdkafka-2.4.0\\" "--x-install-root=C:\sdk\librdkafka-2.4.0\vcpkg_installed\x64-windows-static\\"
 	```  
 	we can also do this in the Visual-Studio, right click the **librdkafka** and click the **Properties**, go to the "**Configuration Properties->cvpkg->Use Static Libraries**" and choose **Yes**  
 	![Use Static Libraries](img/use_static_libraries.png?qc_blockWidth=393&qc_blockHeight=595)  
-	Then if we Build this **librdkafka** project, we will see the command in the console 
+	
+	Then if we build this **librdkafka** project, we will see the command in the console 
 	```
 	vcpkg install  --x-wait-for-lock --triplet "x64-windows-static" --vcpkg-root "C:\repository\github\vcpkg\\" "--x-manifest-root=C:\sdk\librdkafka-2.4.0\\" "--x-install-root=C:\sdk\librdkafka-2.4.0\vcpkg_installed\x64-windows-static\\"
 	```
@@ -67,7 +68,7 @@ So I checked the "librdkafka" solution, I found that it depends some installed l
 	``` 
 14. Then if we build the Lyra project, we will still get the following compilation errors
 `Severity	Code	Description	Project	File	Line	Suppression State	Details Error	LNK2005	ERR_add_error_data already defined in libcrypto.lib(libcrypto-lib-err.obj)	LyraStarterGame	C:\repository\lyra-demo-kafka\LyraStarterGame\Intermediate\ProjectFiles\libcrypto.lib(err.obj)	1		`  
-This is because we also include the Unreal Engine's "**OpenSSL**" module in **KafkaLib.Build.cs** , and there are conflicts between libcrypto.lib/libssl.lib(Version: 3.0.8) and UE5'S OpenSSL(C:\Program Files\Epic Games\UE_5.3\Engine\Binaries\ThirdParty\OpenSSL), just comment the following code, and the build will pass successfully. 
+This is because we also include the Unreal Engine's "**OpenSSL**" module in **KafkaLib.Build.cs** , and there are conflicts between libcrypto.lib/libssl.lib(Version: 3.0.8) and UE5'S OpenSSL(C:\Program Files\Epic Games\UE_5.3\Engine\Binaries\ThirdParty\OpenSSL), just comment out the following code, and the build will pass successfully. 
 	```
         PublicDependencyModuleNames.AddRange(
         new string[]
