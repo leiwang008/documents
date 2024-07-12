@@ -80,7 +80,20 @@ This is because we also include the Unreal Engine's "**OpenSSL**" module in **Ka
 	```  
 
 15. Finally we can run the game with the EasyKafka plugin loaded successfully, PINGO!
-16. The following a sample code to create a kafka producer with oauthbearer/oidc settings
+16. Next I tried to update the header file librdkafka.h of version v2.4.0 to "UE-EasyKafka\Source\ThirdParty\KafkaLib\include\librdkafka", when I build the project, I got errors like the following
+	```
+	Severity	Code	Description	Project	File	Line	Suppression State	Details
+	Error	LNK2019	unresolved external symbol __imp_rd_kafka_err2str referenced in function "public: virtual class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > __cdecl kafka::ErrorCategory::message(int)const " (?message@ErrorCategory@kafka@@UEBA?AV?$basic_string@DU?
+	```
+	I checked that the function "**rd_kafka_err2str**" does exist in the librdkafka.h, this drove me crazy!  
+	Then I copied the content of new librdkafka.h a little bit by bit and carefully compared with the old librdkafka.h, finally I found the reason, the old header file has this **#if 1 // #ifdef LIBRDKAFKA_STATICLIB**, as we are using the static library, I modified so and the errors were gone.
+	```
+	#if 1 // #ifdef LIBRDKAFKA_STATICLIB
+	#define RD_EXPORT
+	#else
+	```
+
+17. The following a sample code to create a kafka producer with oauthbearer/oidc settings
 
 ```
 	EasyKafka = GEngine->GetEngineSubsystem<UEasyKafkaSubsystem>()->GetEasyKafka();
