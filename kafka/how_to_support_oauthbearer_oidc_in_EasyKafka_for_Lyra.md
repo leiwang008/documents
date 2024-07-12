@@ -95,24 +95,24 @@ This is because we also include the Unreal Engine's "**OpenSSL**" module in **Ka
 
 17. The following a sample code to create a kafka producer with oauthbearer/oidc settings
 
-```
-	EasyKafka = GEngine->GetEngineSubsystem<UEasyKafkaSubsystem>()->GetEasyKafka();
+	```
+		EasyKafka = GEngine->GetEngineSubsystem<UEasyKafkaSubsystem>()->GetEasyKafka();
 
-	TMap<EKafkaProducerConfig, FString> KafkaConfiguration =
-	{
-		{EKafkaProducerConfig::MESSAGE_TIMEOUT_MS,5000},
-		{EKafkaProducerConfig::REQUEST_TIMEOUT_MS,5000}
-	};
-	KafkaConfiguration.Add(EKafkaProducerConfig::BOOTSTRAP_SERVERS, "localhost:9092");
-	KafkaConfiguration.Add(EKafkaProducerConfig::SASL_MECHANISM, "OAUTHBEARER");
-	KafkaConfiguration.Add(EKafkaProducerConfig::SASL_OAUTHBEARER_METHOD, "oidc");
-	KafkaConfiguration.Add(EKafkaProducerConfig::SASL_OAUTHBEARER_CLIENT_ID, "<your_client_id>");
-	KafkaConfiguration.Add(EKafkaProducerConfig::SASL_OAUTHBEARER_CLIENT_SECRET, "<your_client_secret>");
-	KafkaConfiguration.Add(EKafkaProducerConfig::SASL_OAUTHBEARER_SCOPE, "<your_app_scope>");
-	KafkaConfiguration.Add(EKafkaProducerConfig::SASL_OAUTHBEARER_TOKEN_ENDPOINT_URL, "<oauthbearer_token_url>");
+		TMap<EKafkaProducerConfig, FString> KafkaConfiguration =
+		{
+			{EKafkaProducerConfig::MESSAGE_TIMEOUT_MS,5000},
+			{EKafkaProducerConfig::REQUEST_TIMEOUT_MS,5000}
+		};
+		KafkaConfiguration.Add(EKafkaProducerConfig::BOOTSTRAP_SERVERS, "localhost:9092");
+		KafkaConfiguration.Add(EKafkaProducerConfig::SASL_MECHANISM, "OAUTHBEARER");
+		KafkaConfiguration.Add(EKafkaProducerConfig::SASL_OAUTHBEARER_METHOD, "oidc");
+		KafkaConfiguration.Add(EKafkaProducerConfig::SASL_OAUTHBEARER_CLIENT_ID, "<your_client_id>");
+		KafkaConfiguration.Add(EKafkaProducerConfig::SASL_OAUTHBEARER_CLIENT_SECRET, "<your_client_secret>");
+		KafkaConfiguration.Add(EKafkaProducerConfig::SASL_OAUTHBEARER_SCOPE, "<your_app_scope>");
+		KafkaConfiguration.Add(EKafkaProducerConfig::SASL_OAUTHBEARER_TOKEN_ENDPOINT_URL, "<oauthbearer_token_url>");
 
-	KafkaConfiguration.Add(EKafkaProducerConfig::SECURITY_PROTOCOL, "SASL_PLAINTEXT");
+		KafkaConfiguration.Add(EKafkaProducerConfig::SECURITY_PROTOCOL, "SASL_PLAINTEXT");
 
-	EasyKafka->GetProducer()->CreateProducer("localhost:9092", ""/*user*/, ""/*password*/, KafkaConfiguration, true, (int)EKafkaLogLevel::ERR);
-	EasyKafka->GetProducer()->ProduceRecord("your-topic", "your message", 1008 /*RecordId*/, true);
-```
+		EasyKafka->GetProducer()->CreateProducer("localhost:9092", ""/*user*/, ""/*password*/, KafkaConfiguration, true, (int)EKafkaLogLevel::ERR);
+		EasyKafka->GetProducer()->ProduceRecord("your-topic", "your message", 1008 /*RecordId*/, true);
+	```
