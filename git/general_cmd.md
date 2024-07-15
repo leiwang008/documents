@@ -64,6 +64,18 @@
 # How to move file to unstaged?
 `git restore --staged kafka/image.png` will move file **kafka/image.png** from staged area to unstaged area.
 
+# How to reset to a certain commit on remote repository?
++ reset to a previous commit   
+  `git reset --hard <commit-hash>`
++ push the commit to remote repository hardly
+  `git push -f origin master`
+
+or you can do this
++ undo the last commit locally
+  `git reset HEAD^`
++ force push the local commit
+  `git reset HEAD^`
+
 # How to load your ssh private key to 'ssh agent' when you open the git bash?  
 After [adding your ssh public key to github](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account), you still need to load your private key into the 'ssh agent' in your local machine so that the ssh connection will be established successfully.   
 Create a file named '.bash_profile' in your home folder so that the ssh private key will be loaded when you open a git bash.
