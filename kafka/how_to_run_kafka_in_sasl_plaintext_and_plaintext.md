@@ -15,7 +15,6 @@ kafka-console-producer.bat --topic gaming-events --bootstrap-server localhost:90
 
 kafka-console-consumer.bat --topic gaming-events --from-beginning --bootstrap-server localhost:9093 --consumer.config ./config/consumer.properties
 kafka-console-producer.bat --topic gaming-events --bootstrap-server localhost:9093 --producer.config ./config/producer.properties
-kafka-console-producer.bat --topic gaming-events --bootstrap-server safsdev03.na.sas.com:9093 --producer.config ./config/producer.properties
 
 For more security config, refer to [https://kafka.apache.org/documentation/#security](https://kafka.apache.org/documentation/#security), but I can assure you the official document is not so good.
 
