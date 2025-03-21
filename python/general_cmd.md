@@ -36,3 +36,34 @@ which python
 # in the git bash, you should always see a (.venv) showing up
 
 ```
+
+# how to install python and pip on wsl ubuntu?
+```bash
+# install python3
+sudo apt install python3
+sudo ln -s /usr/bin/python3 /usr/bin/python
+python --version
+
+# add the universe repository
+sudo add-apt-repository universe
+
+# install pip
+sudo apt update
+sudo apt install python3-pip
+pip --version
+
+# install python3 venv
+sudo apt install python3.12-venv
+
+```
+
+# how to create virtual python environment?
+```shell
+# create virtual env
+sudo python -m venv .venv
+
+# activate it
+. .venv/bin/activate
+
+
+```
