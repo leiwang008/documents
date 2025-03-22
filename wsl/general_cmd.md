@@ -10,6 +10,25 @@ docker-desktop
 docker-desktop-data
 ```
 
+# how to list the detail status of each distribution?
+```shell
+wsl --list --verbose
+```
+
+Normally you will see them stopped
+```shell
+  NAME              STATE           VERSION
+* Ubuntu-24.04      Stopped         2
+  docker-desktop    Stopped         2
+```
+
+But if you open a **wsl** terminal, you will see it running. If you run **Docker Desktop** and you will also see them running as **Docker Desktop** will use them.
+```shell
+  NAME              STATE           VERSION
+* Ubuntu            Running         2
+  docker-desktop    Running         2
+```
+
 # how to remove a distribution?
 ```
 wsl --unregister Ubuntu-18.04
