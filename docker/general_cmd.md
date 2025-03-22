@@ -12,3 +12,10 @@ export HTTP_PROXY="http://your.proxy.com:port"
 export HTTPS_PROXY="http://your.proxy.com:port"
 ```
 Then restart Docker and try again.
+
+# how to login with a certain user?
+```bash
+docker login -u username
+
+# then a prompt will pop up, enter your password
+```
