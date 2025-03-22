@@ -104,3 +104,58 @@ Create a file named '.bash_profile' in your home folder so that the ssh private 
     	echo "no ssh agent, problem ..."
     fi
   ```
+
+# how to save the local files?
+```bash
+git stash
+git stash push -m "save my local work"
+```
+
+# how to list all stashed work?
+```bash
+git stash list
+```
+
+```shell
+stash@{0}: On backend-api-lif: unique spec vehicle type
+stash@{1}: WIP on backend-api-lif: 8f7d33b feat(api): add constraints for vehicle_type_id of edge table
+stash@{2}: On backend-api-lif: start end node id constraint
+```
+
+
+# how to apply my local work?
+```bash
+# apply the latest work
+git stash apply
+
+# apply a certain stash
+git stash apply stash@{2}
+
+```
+
+
+# how to amend a commit?
+```bash
+# after you make the commit, you can still modify more files
+
+# add them
+git add .
+
+# amend the commit
+git commit --amend
+
+# an editor will open, modify the commit message and save the file and close it
+git push
+```
+
+
+# how to modify a historical commit message?
+```bash
+# change the previous 5th commit message
+git rebase -i HEAD~5
+# Change 'pick' to 'reword' for the fifth commit in the editor
+# Save and close the editor
+# Modify the commit message in the new editor
+# Save and close the editor
+git push --force
+```
