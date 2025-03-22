@@ -58,6 +58,12 @@ docker-desktop
 docker-desktop-data
 ```
 
+# open a wsl terminal
+`wsl`
+
+# shutdown a wsl
+`wsl --shutdown`
+
 # how to know the current distribution's version?
 ```shell
 more /etc/os-release
