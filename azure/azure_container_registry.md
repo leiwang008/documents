@@ -16,3 +16,6 @@ Login Succeeded
 docker tag your_docker_image:latest my-image-registry.azurecr.io/your_docker_image:latest
 docker push my-image-registry.azurecr.io/your_docker_image:latest
 ```
+
++ enable the authentication/login for this ACR
+Go to your ACR in the Azure Portal and Under Settings → Access keys, Toggle Admin user to Enabled.
