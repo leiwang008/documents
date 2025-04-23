@@ -64,21 +64,6 @@
 # How to move file to unstaged?
 `git restore --staged kafka/image.png` will move file **kafka/image.png** from staged area to unstaged area.
 
-# How to reset to a certain commit on remote repository?
-There are 2 ways to do so.  
-1. rollback by commit-hash
-+ reset to a previous commit   
-  `git reset --hard <commit-hash>`
-+ push the commit to remote repository hardly  
-  `git push -f origin master`
-
-2. rollback to last commit.
-or you can do this
-+ undo the last commit locally
-  `git reset HEAD^`
-+ force push the local commit
-  `git push origin +HEAD`
-
 # How to load your ssh private key to 'ssh agent' when you open the git bash?  
 After [adding your ssh public key to github](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account), you still need to load your private key into the 'ssh agent' in your local machine so that the ssh connection will be established successfully.   
 Create a file named '.bash_profile' in your home folder so that the ssh private key will be loaded when you open a git bash.
@@ -133,7 +118,6 @@ git stash apply stash@{2}
 
 ```
 
-
 # how to amend a commit?
 ```bash
 # after you make the commit, you can still modify more files
@@ -158,4 +142,28 @@ git rebase -i HEAD~5
 # Modify the commit message in the new editor
 # Save and close the editor
 git push --force
+```
+
+# How to reset to a certain commit on remote repository?
+There are 2 ways to do so.  
+1. rollback by commit-hash
++ reset to a previous commit   
+  `git reset --hard <commit-hash>`
++ push the commit to remote repository hardly  
+  `git push -f origin master`
+
+2. rollback to last commit.
+or you can do this
++ undo the last commit locally
+  `git reset HEAD^`
++ force push the local commit
+  `git push origin +HEAD`
+
+
+# How to make vscode your git editor
+```bash
+# --wait is important — it tells Git to wait until you close the VS Code window before continuing
+git config --global core.editor "code --wait"
+# check what your editor is currently set to
+git config --global core.editor
 ```
