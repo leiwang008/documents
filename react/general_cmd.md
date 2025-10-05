@@ -20,8 +20,13 @@ npm start
 
     + Built-in routing (file-based)
     + SSR, SSG, ISR, and CSR all supported
+        + CSR Client Side Render
+        + SSR Server Side Render
+        + SSG Static Site Generation
+        + ISR Incremental Site ReGeneration
     + API routes (serverless functions)
     + Better SEO support via SSR/SSG
+        + SEO Search Engine Optimization
     + Middleware, image optimization, and more
     + Highly scalable for enterprise use
 
