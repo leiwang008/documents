@@ -20,6 +20,26 @@
   `git diff --cached` show the difference between files in the stage area and the those in the repository  
   `git diff --cached --name-only` show the files in the stage area  
 
+# how to sync my local branch with 
+You're working on a feature branch off dev, and someone updated dev after you branched. Here's how to sync your branch with the latest remote dev changes, safely and cleanly.
+```bash
+# Make sure you're on your feature branch
+git checkout my-feature
+
+# Fetch latest changes from remote
+git fetch origin
+
+# Rebase your work on top of the latest dev
+git rebase origin/dev
+
+# after successfuly sync, you will see message as below
+# Successfully rebased and updated refs/heads/your-feature-branch.
+
+# If there are conflicts, Git will stop and let you resolve them. After fixing
+git add <conflicted-files>
+git rebase --continue
+# Repeat above steps until done.
+```
 
 # How to make tag?
 + git tag  
@@ -164,6 +184,6 @@ or you can do this
 ```bash
 # --wait is important — it tells Git to wait until you close the VS Code window before continuing
 git config --global core.editor "code --wait"
-# check what your editor is currently set to
+# check what your editor is currently set
 git config --global core.editor
 ```
